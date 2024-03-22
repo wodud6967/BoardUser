@@ -29,6 +29,7 @@ public class MenuController {
       System.out.println("MenuController list() menuList=" + menuList);
       //테스트
       //fdsfs
+      //ss
    
       return "menus/list";
    }
