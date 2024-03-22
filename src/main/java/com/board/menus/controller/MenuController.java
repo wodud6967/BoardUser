@@ -28,6 +28,7 @@ public class MenuController {
       model.addAttribute("menuList", menuList);
       System.out.println("MenuController list() menuList=" + menuList);
       //테스트
+      //fdsfs
    
       return "menus/list";
    }
