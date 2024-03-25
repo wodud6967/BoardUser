@@ -44,10 +44,12 @@ tr:first-child {
       </tr>
      <c:forEach  var="userVo" items="${userList}">
       <tr>
-       <td>${userVo.userid}</td>        
-    	<td>${userVo.username}</td>        
+       <td>
+      		 ${userVo.userid}
+       </td>        
+       <td><a href="/Users/View?userid=${userVo.userid}">${userVo.username}</a></td>        
        <td>${userVo.email}</td>        
-       <td>${userVo.upoint}</td>        
+       <td>${userVo['upoint'] + 1000}</td>        
        <td>${userVo.indate}</td> 
       </tr>
       </c:forEach>

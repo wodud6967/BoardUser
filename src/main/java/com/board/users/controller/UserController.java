@@ -3,6 +3,7 @@ package com.board.users.controller;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +14,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.board.users.domain.UserVo;
 import com.board.users.mapper.UserMapper;
 
+import lombok.extern.slf4j.Slf4j;
 
 
 
+
+@Slf4j
 @Controller
 @RequestMapping("/Users")
 public class UserController {
@@ -45,6 +49,7 @@ public class UserController {
 		DayOfWeek wkday = today.getDayOfWeek();
       	now += " " +  wkday;
 		System.out.println("--------------------------fdsfsdfsdf");
+		
 		mv.addObject("now", now);
 		mv.setViewName("users/write");
 		
@@ -56,6 +61,41 @@ public class UserController {
 		//userMapper.inserUser(userVo);
 		ModelAndView mv = new ModelAndView();
 		userMapper.insertUser(userVo);
+		mv.setViewName("redirect:/Users/List");
+		return mv;
+	}
+	
+	@RequestMapping("/View")
+	public ModelAndView View(UserVo userVo) {
+		
+		HashMap<String, Object> map = userMapper.getUser(userVo);
+	
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("vo", map);
+		mv.setViewName("users/view");
+		return mv;
+	}
+	
+	@RequestMapping("/UpdateForm")
+	public ModelAndView updateForm(UserVo userVo) {
+		log.info("떳냐");
+		HashMap<String, Object> map = userMapper.getUser(userVo);
+		
+		//modle에 담기
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("vo", map);
+		
+		//이동
+		mv.setViewName("users/update");
+		return mv;
+	}
+
+	@RequestMapping("Update")
+	public ModelAndView update(UserVo userVo) {
+		
+		userMapper.updateUser(userVo);
+		
+		ModelAndView mv = new ModelAndView();
 		mv.setViewName("redirect:/Users/List");
 		return mv;
 	}
