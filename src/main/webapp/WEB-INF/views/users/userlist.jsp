@@ -49,7 +49,7 @@ tr:first-child {
        </td>        
        <td><a href="/Users/View?userid=${userVo.userid}">${userVo.username}</a></td>        
        <td>${userVo.email}</td>        
-       <td>${userVo['upoint'] + 1000}</td>        
+       <td>${userVo.upoint}</td>        
        <td>${userVo.indate}</td> 
       </tr>
       </c:forEach>
